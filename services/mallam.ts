@@ -4,6 +4,7 @@ type Props = {
   top_p?: number;
   top_k?: number;
   max_tokens?: number;
+  stream?: boolean;
 }
 
 interface Usage {
@@ -31,6 +32,7 @@ export class Mallam {
       top_p: 0.95,
       top_k: 50,
       max_tokens: 256,
+      stream: false
     };
 
     this.props = { ...defaultProps, ...props };
@@ -59,7 +61,7 @@ export class Mallam {
         }
       ],
       "tools": null,
-      "stream": false
+      "stream": this.props.stream
     });
 
     const res = await fetch("https://llm-router.nous.mesolitica.com/chat/completions", {
