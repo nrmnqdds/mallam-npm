@@ -1,6 +1,6 @@
 {
   "name": "mallam",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Javasacript Wrapper for MaLLaM API",
   "main": "index.ts",
   "scripts": {
