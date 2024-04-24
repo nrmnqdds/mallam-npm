@@ -1,3 +1,3 @@
 const { Mallam } = require("./services/mallam")
 
-export default { Mallam };
+module.exports = { Mallam }
