@@ -1,0 +1,35 @@
+{
+  "name": "mallam-npm",
+  "version": "0.0.1",
+  "description": "A Javasacript wrapper for MaLLaM API",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node --import tsx index.ts"
+  },
+  "keywords": [
+    "mallam",
+    "mallam javascript",
+    "mallam api"
+  ],
+  "bugs": {
+    "url": "https://github.com/kariy/imaluum-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrmnqdds/mallam-npm.git"
+  },
+  "homepage": "https://github.com/nrmnqdds/mallam-npm#readme",
+  "preferGlobal": true,
+  "author": "nrmnqdds",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/typescript": "^2.0.0",
+    "tsx": "^4.7.2"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.7",
+    "node": "^18.20.2",
+    "typescript": "^5.4.5"
+  }
+}
