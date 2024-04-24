@@ -12,7 +12,7 @@ interface Usage {
   completion_tokens: number;
 }
 
-interface MallamResponse {
+type MallamResponse = {
   id: string;
   message: string;
   usage: Usage;
