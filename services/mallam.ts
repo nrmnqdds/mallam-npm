@@ -38,7 +38,7 @@ export class Mallam {
     this.props = { ...defaultProps, ...props };
   }
 
-  generatePrompt = async (prompt: string): Promise<MallamResponse> => {
+  public generatePrompt = async (prompt: string): Promise<MallamResponse> => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
     myHeaders.append("Content-Type", "application/json");
@@ -75,15 +75,14 @@ export class Mallam {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const text = await res.text()
+    const text = JSON.parse(await res.text())
 
-    let result = JSON.parse(text)
-    result = {
-      id: result.id,
+    const result = {
+      id: text.id,
       prompt,
-      message: result.choices[0].message.content,
-      usage: result.usage
-    }
+      message: text.choices[0].message.content,
+      usage: text.usage
+    } as MallamResponse
 
     return result
   }
