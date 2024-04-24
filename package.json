@@ -22,7 +22,7 @@
   "homepage": "https://github.com/nrmnqdds/mallam-npm#readme",
   "preferGlobal": true,
   "author": "nrmnqdds",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/typescript": "^2.0.0",
     "tsx": "^4.7.2"
