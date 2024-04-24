@@ -1,3 +1,3 @@
-import { Mallam } from "./services/mallam";
+const { Mallam } = require("./services/mallam")
 
-export { Mallam };
+export default { Mallam };
