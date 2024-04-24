@@ -19,7 +19,11 @@ type MallamResponse = {
   usage: Usage;
 }
 
-export class Mallam {
+type MallamAgent = {
+  generatePrompt: (prompt: string) => Promise<MallamResponse>;
+}
+
+export class Mallam implements MallamAgent {
   private apiKey: string;
   private props: Props;
 
