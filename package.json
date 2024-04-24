@@ -1,7 +1,7 @@
 {
-  "name": "mallam-npm",
+  "name": "mallam",
   "version": "0.0.1",
-  "description": "A Javasacript wrapper for MaLLaM API",
+  "description": "A Javasacript Wrapper for MaLLaM API",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,7 @@
     "mallam api"
   ],
   "bugs": {
-    "url": "https://github.com/kariy/imaluum-cli/issues"
+    "url": "https://github.com/nrmnqdds/mallam-npm/issues"
   },
   "repository": {
     "type": "git",
