@@ -9,6 +9,9 @@ A zero dependency wrapper around Malaysia Large Language Model(MaLLaM) for javas
 - Easy implementation for MaLLaM 🌙 in your NodeJS app
 - Helps non-phyton user to use the Mallam 🌙 API in their app
 
+## API Key
+Get your API key from [Mesolitica Website](https://app.nous.mesolitica.com/)
+
 ## Usage
 
 ```javascript
