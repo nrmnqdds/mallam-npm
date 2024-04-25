@@ -2,8 +2,8 @@
   "name": "mallam",
   "version": "1.0.19",
   "description": "A Javasacript Wrapper for MaLLaM API",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "node --import tsx test/index.ts",
     "start": "tsc && node --import tsx index.ts"
