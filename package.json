@@ -1,7 +1,7 @@
 {
   "name": "mallam",
   "version": "1.0.20",
-  "description": "A Javasacript Wrapper for MaLLaM API",
+  "description": "A Javasacript wrapper for MaLLaM API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
