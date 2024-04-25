@@ -42,7 +42,7 @@ export class Mallam implements MallamAgent {
     this.props = { ...defaultProps, ...props };
   }
 
-  public generatePrompt = async (prompt: string): Promise<MallamResponse> => {
+  generatePrompt = async (prompt: string): Promise<MallamResponse> => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
     myHeaders.append("Content-Type", "application/json");

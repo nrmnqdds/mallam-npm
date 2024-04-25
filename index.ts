@@ -1,3 +1,3 @@
-const { Mallam } = require("./services/mallam")
+import { Mallam } from "./services/mallam"
 
-module.exports = Mallam 
+export { Mallam } 
