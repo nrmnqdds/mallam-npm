@@ -26,6 +26,7 @@ interface MallamResponse {
 
 interface MallamAgent {
   generatePrompt(prompt: string): Promise<MallamResponse>;
+  generatePrompt(messages: Message[]): Promise<MallamResponse>;
 }
 
 export class Mallam implements MallamAgent {
