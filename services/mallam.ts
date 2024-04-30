@@ -1,4 +1,4 @@
-type Props = {
+interface Props {
   model?: string;
   temperature?: number;
   top_p?: number;
@@ -13,14 +13,19 @@ interface Usage {
   completion_tokens: number;
 }
 
-type MallamResponse = {
+interface Message {
+  role: string;
+  content: string;
+}
+
+interface MallamResponse {
   id: string;
   message: string;
   usage: Usage;
 }
 
-type MallamAgent = {
-  generatePrompt: (prompt: string) => Promise<MallamResponse>;
+interface MallamAgent {
+  generatePrompt(prompt: string): Promise<MallamResponse>;
 }
 
 export class Mallam implements MallamAgent {
@@ -36,7 +41,7 @@ export class Mallam implements MallamAgent {
       top_p: 0.95,
       top_k: 50,
       max_tokens: 256,
-      stream: false
+      stream: false,
     };
 
     this.props = { ...defaultProps, ...props };
@@ -48,47 +53,45 @@ export class Mallam implements MallamAgent {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      "model": this.props.model,
-      "temperature": this.props.temperature,
-      "top_p": this.props.top_p,
-      "top_k": this.props.top_k,
-      "max_tokens": this.props.max_tokens,
-      "stop": [
-        "[/INST]",
-        "[INST]",
-        "<s>"
-      ],
-      "messages": [
+      model: this.props.model,
+      temperature: this.props.temperature,
+      top_p: this.props.top_p,
+      top_k: this.props.top_k,
+      max_tokens: this.props.max_tokens,
+      stop: ["[/INST]", "[INST]", "<s>"],
+      messages: [
         {
-          "role": "user",
-          "content": prompt
-        }
+          role: "user",
+          content: prompt,
+        },
       ],
-      "tools": null,
-      "stream": this.props.stream
+      tools: null,
+      stream: this.props.stream,
     });
 
-    const res = await fetch("https://llm-router.nous.mesolitica.com/chat/completions", {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    })
+    const res = await fetch(
+      "https://llm-router.nous.mesolitica.com/chat/completions",
+      {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const text = JSON.parse(await res.text())
+    const text = JSON.parse(await res.text());
 
     const result = {
       id: text.id,
       prompt,
       message: text.choices[0].message.content,
-      usage: text.usage
-    } as MallamResponse
+      usage: text.usage,
+    } as MallamResponse;
 
-    return result
-  }
-
+    return result;
+  };
 }
