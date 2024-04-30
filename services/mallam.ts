@@ -42,7 +42,7 @@ export class Mallam implements MallamAgent {
       top_p: 0.95,
       top_k: 50,
       max_tokens: 256,
-      stream: false,
+      stream: false
     };
 
     this.props = { ...defaultProps, ...props };
@@ -66,40 +66,42 @@ export class Mallam implements MallamAgent {
     }
 
     const raw = JSON.stringify({
-      model: this.props.model,
-      temperature: this.props.temperature,
-      top_p: this.props.top_p,
-      top_k: this.props.top_k,
-      max_tokens: this.props.max_tokens,
-      stop: ["[/INST]", "[INST]", "<s>"],
-      messages,
-      tools: null,
-      stream: this.props.stream,
+      "model": this.props.model,
+      "temperature": this.props.temperature,
+      "top_p": this.props.top_p,
+      "top_k": this.props.top_k,
+      "max_tokens": this.props.max_tokens,
+      "stop": [
+        "[/INST]",
+        "[INST]",
+        "<s>"
+      ],
+      "messages": messages,
+      "tools": null,
+      "stream": this.props.stream
     });
 
-    const res = await fetch(
-      "https://llm-router.nous.mesolitica.com/chat/completions",
-      {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      }
-    );
+    const res = await fetch("https://llm-router.nous.mesolitica.com/chat/completions", {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    })
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const text = JSON.parse(await res.text());
+    const text = JSON.parse(await res.text())
 
     const result = {
       id: text.id,
       prompt,
       message: text.choices[0].message.content,
-      usage: text.usage,
-    } as MallamResponse;
+      usage: text.usage
+    } as MallamResponse
 
-    return result;
-  };
+    return result
+  }
+
 }
