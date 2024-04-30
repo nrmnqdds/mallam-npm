@@ -4,6 +4,8 @@ A zero dependency wrapper around Malaysia Large Language Model(MaLLaM) for javas
 
 > Credits to [Mesolitica](https://mesolitica.com/) for this amazing API
 
+[![Downloads](https://img.shields.io/npm/dm/mallam.svg)](https://npmjs.com/mallam)
+
 ## Why?
 - Easier to modify the parameters using javascript syntaxes
 - Easy implementation for MaLLaM 🌙 in your NodeJS app
