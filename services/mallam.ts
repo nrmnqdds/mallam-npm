@@ -7,15 +7,15 @@ interface Props {
   stream?: boolean;
 }
 
+interface ChatCompletionMessageParam {
+  role: string;
+  content: string;
+}
+
 interface Usage {
   prompt_tokens: number;
   total_tokens: number;
   completion_tokens: number;
-}
-
-interface Message {
-  role: string;
-  content: string;
 }
 
 interface MallamResponse {
@@ -26,7 +26,7 @@ interface MallamResponse {
 
 interface MallamAgent {
   generatePrompt(prompt: string): Promise<MallamResponse>;
-  generatePrompt(messages: Message[]): Promise<MallamResponse>;
+  generatePrompt(messages: ChatCompletionMessageParam[]): Promise<MallamResponse>;
 }
 
 export class Mallam implements MallamAgent {
@@ -48,14 +48,12 @@ export class Mallam implements MallamAgent {
     this.props = { ...defaultProps, ...props };
   }
 
-  generatePrompt = async (
-    prompt: string | Message[]
-  ): Promise<MallamResponse> => {
+  generatePrompt = async (prompt: string | ChatCompletionMessageParam[]): Promise<MallamResponse> => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
     myHeaders.append("Content-Type", "application/json");
 
-    let messages: Message[] = [];
+    let messages: ChatCompletionMessageParam[] = [];
     if (typeof prompt === "string") {
       messages = [
         {
