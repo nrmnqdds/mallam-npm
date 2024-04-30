@@ -48,10 +48,24 @@ export class Mallam implements MallamAgent {
     this.props = { ...defaultProps, ...props };
   }
 
-  generatePrompt = async (prompt: string): Promise<MallamResponse> => {
+  generatePrompt = async (
+    prompt: string | Message[]
+  ): Promise<MallamResponse> => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
     myHeaders.append("Content-Type", "application/json");
+
+    let messages: Message[] = [];
+    if (typeof prompt === "string") {
+      messages = [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ];
+    } else {
+      messages = prompt;
+    }
 
     const raw = JSON.stringify({
       model: this.props.model,
@@ -60,12 +74,7 @@ export class Mallam implements MallamAgent {
       top_k: this.props.top_k,
       max_tokens: this.props.max_tokens,
       stop: ["[/INST]", "[INST]", "<s>"],
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
+      messages,
       tools: null,
       stream: this.props.stream,
     });
