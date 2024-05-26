@@ -1,6 +1,6 @@
 {
 	"name": "mallam",
-	"version": "1.0.25",
+	"version": "1.0.26",
 	"description": "A JavaScript wrapper for MaLLaM API",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -9,7 +9,11 @@
 		"build": "tsc",
 		"start": "tsc && bun run index.ts"
 	},
-	"keywords": ["mallam", "mallam javascript", "mallam api"],
+	"keywords": [
+		"mallam",
+		"mallam javascript",
+		"mallam api"
+	],
 	"bugs": {
 		"url": "https://github.com/nrmnqdds/mallam-npm/issues"
 	},
