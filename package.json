@@ -1,36 +1,30 @@
 {
-  "name": "mallam",
-  "version": "1.0.23",
-  "description": "A JavaScript wrapper for MaLLaM API",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "tsc && node --import tsx index.ts"
-  },
-  "keywords": [
-    "mallam",
-    "mallam javascript",
-    "mallam api"
-  ],
-  "bugs": {
-    "url": "https://github.com/nrmnqdds/mallam-npm/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nrmnqdds/mallam-npm.git"
-  },
-  "homepage": "https://github.com/nrmnqdds/mallam-npm#readme",
-  "preferGlobal": true,
-  "author": "nrmnqdds",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.12.7",
-    "tsx": "^4.7.2"
-  },
-  "dependencies": {
-    "node": "^20.11.0",
-    "typescript": "^5.4.5"
-  }
+	"name": "mallam",
+	"version": "1.0.23",
+	"description": "A JavaScript wrapper for MaLLaM API",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"start": "tsc && node --import tsx index.ts"
+	},
+	"keywords": ["mallam", "mallam javascript", "mallam api"],
+	"bugs": {
+		"url": "https://github.com/nrmnqdds/mallam-npm/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nrmnqdds/mallam-npm.git"
+	},
+	"homepage": "https://github.com/nrmnqdds/mallam-npm#readme",
+	"preferGlobal": true,
+	"author": "nrmnqdds",
+	"license": "MIT",
+	"devDependencies": {
+		"tsx": "^4.7.2"
+	},
+	"dependencies": {
+		"typescript": "^5.4.5"
+	}
 }
