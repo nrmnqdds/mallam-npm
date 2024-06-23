@@ -16,13 +16,27 @@ Get your API key from [Mesolitica Website](https://app.nous.mesolitica.com/)
 
 ## Usage
 
-```javascript
+### Chat Completion
+
+```typescript
 import { Mallam } from "mallam";
 
 const mallam = new Mallam("your_api_key_here");
 
 (async() => {
-  const res = await mallam.generatePrompt("berapa average harga rumah dekat johor?");
+  const res = await mallam.chatCompletion("berapa average harga rumah dekat johor?");
+  console.log(res);
+})()
+```
+### Create Embeddings
+
+```typescript
+import { Mallam } from "mallam";
+
+const mallam = new Mallam("your_api_key_here");
+
+(async() => {
+  const res = await mallam.createEmbedding("saya sayang ibu saya");
   console.log(res);
 })()
 ```
@@ -30,7 +44,7 @@ const mallam = new Mallam("your_api_key_here");
 ## Configuration
 
 Customize the parameter:
-```javascript
+```typescript
 const mallam = new Mallam(
   "your_api_key_here",
   {

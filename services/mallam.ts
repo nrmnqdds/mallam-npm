@@ -18,17 +18,22 @@ interface Usage {
 	completion_tokens: number;
 }
 
-interface MallamResponse {
+type ChatCompletionResponse = {
 	id: string;
 	message: string;
 	usage: Usage;
-}
+};
 
 interface MallamAgent {
-	generatePrompt(
+	chatCompletion(
 		messages: ChatCompletionMessageParam[],
-	): Promise<MallamResponse>;
+	): Promise<ChatCompletionResponse>;
 }
+
+type CreateEmbeddingResponse = {
+	embedding: number[];
+	usage: Usage;
+};
 
 export class Mallam implements MallamAgent {
 	private apiKey: string;
@@ -49,9 +54,9 @@ export class Mallam implements MallamAgent {
 		this.props = { ...defaultProps, ...props };
 	}
 
-	generatePrompt = async (
+	chatCompletion = async (
 		prompt: string | ChatCompletionMessageParam[],
-	): Promise<MallamResponse> => {
+	): Promise<ChatCompletionResponse> => {
 		const myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
 		myHeaders.append("Content-Type", "application/json");
@@ -101,7 +106,41 @@ export class Mallam implements MallamAgent {
 			prompt,
 			message: text.choices[0].message.content,
 			usage: text.usage,
-		} as MallamResponse;
+		} as ChatCompletionResponse;
+
+		return result;
+	};
+
+	createEmbedding = async (text: string): Promise<CreateEmbeddingResponse> => {
+		const myHeaders = new Headers();
+		myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
+		myHeaders.append("Content-Type", "application/json");
+
+		const raw = JSON.stringify({
+			input: text,
+			model: "base",
+		});
+
+		const res = await fetch(
+			"https://llm-router.nous.mesolitica.com/embeddings",
+			{
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow",
+			},
+		);
+
+		if (!res.ok) {
+			throw new Error(`HTTP error! status: ${res.status}`);
+		}
+
+		const data = await res.json();
+
+		const result = {
+			embedding: data.data[0].embedding,
+			usage: data.usage,
+		};
 
 		return result;
 	};
