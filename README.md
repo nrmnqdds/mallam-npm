@@ -71,28 +71,3 @@ const mallam = new Mallam("your_api_key_here");
   console.log(res);
 })()
 ```
-### Create embedding with configuration
-
-```typescript
-import { Mallam } from "mallam";
-
-const mallam = new Mallam("your_api_key_here");
-
-(async() => {
-  const res = await mallam.chatCompletion("berapa average harga rumah dekat johor?", {
-        temperature: 0.5,
-        top_p: 0.95,
-        top_k: 50,
-        max_tokens: 256,
-        stream: false
-    });
-  console.log(res);
-})()
-```
-
-Available configuration:
-
-| Parameter    | Default Value |
-| -------- | ------- |
-| model  | "base"    |
-
