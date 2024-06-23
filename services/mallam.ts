@@ -1,10 +1,14 @@
-interface Props {
+interface ChatCompletionProps {
 	model?: string;
 	temperature?: number;
 	top_p?: number;
 	top_k?: number;
 	max_tokens?: number;
 	stream?: boolean;
+}
+
+interface CreateEmbeddingProps {
+	model?: string;
 }
 
 interface ChatCompletionMessageParam {
@@ -37,12 +41,16 @@ type CreateEmbeddingResponse = {
 
 export class Mallam implements MallamAgent {
 	private apiKey: string;
-	private props: Props;
 
-	constructor(apiKey: string, props?: Props) {
+	constructor(apiKey: string) {
 		this.apiKey = apiKey;
+	}
 
-		const defaultProps: Props = {
+	chatCompletion = async (
+		prompt: string | ChatCompletionMessageParam[],
+		props?: ChatCompletionProps,
+	): Promise<ChatCompletionResponse> => {
+		const defaultProps: ChatCompletionProps = {
 			model: "mallam-small",
 			temperature: 0.9,
 			top_p: 0.95,
@@ -51,12 +59,8 @@ export class Mallam implements MallamAgent {
 			stream: false,
 		};
 
-		this.props = { ...defaultProps, ...props };
-	}
+		props = { ...defaultProps, ...props };
 
-	chatCompletion = async (
-		prompt: string | ChatCompletionMessageParam[],
-	): Promise<ChatCompletionResponse> => {
 		const myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
 		myHeaders.append("Content-Type", "application/json");
@@ -74,15 +78,15 @@ export class Mallam implements MallamAgent {
 		}
 
 		const raw = JSON.stringify({
-			model: this.props.model,
-			temperature: this.props.temperature,
-			top_p: this.props.top_p,
-			top_k: this.props.top_k,
-			max_tokens: this.props.max_tokens,
+			model: props.model,
+			temperature: props.temperature,
+			top_p: props.top_p,
+			top_k: props.top_k,
+			max_tokens: props.max_tokens,
 			stop: ["[/INST]", "[INST]", "<s>"],
 			messages: messages,
 			tools: null,
-			stream: this.props.stream,
+			stream: props.stream,
 		});
 
 		const res = await fetch(
@@ -111,14 +115,17 @@ export class Mallam implements MallamAgent {
 		return result;
 	};
 
-	createEmbedding = async (text: string): Promise<CreateEmbeddingResponse> => {
+	createEmbedding = async (
+		text: string,
+		props?: CreateEmbeddingProps,
+	): Promise<CreateEmbeddingResponse> => {
 		const myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
 		myHeaders.append("Content-Type", "application/json");
 
 		const raw = JSON.stringify({
 			input: text,
-			model: "base",
+			model: props?.model || "base",
 		});
 
 		const res = await fetch(
