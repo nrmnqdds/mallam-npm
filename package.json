@@ -1,13 +1,17 @@
 {
 	"name": "mallam",
-	"version": "1.0.29",
+	"version": "1.0.30",
 	"description": "A JavaScript wrapper for MaLLaM API",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc",
 		"start": "tsc && bun run index.ts"
 	},
-	"keywords": ["mallam", "mallam javascript", "mallam api"],
+	"keywords": [
+		"mallam",
+		"mallam javascript",
+		"mallam api"
+	],
 	"bugs": {
 		"url": "https://github.com/nrmnqdds/mallam-npm/issues"
 	},
