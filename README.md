@@ -28,7 +28,7 @@ const mallam = new Mallam("your_api_key_here");
   console.log(res);
 })()
 ```
-### Chat Completion with configuration
+### Chat Completion with configuration(Not Stream)
 
 ```typescript
 import { Mallam } from "mallam";
@@ -58,6 +58,27 @@ Available configuration:
 | max_tokens    | 256    |
 | stream    | false    |
 
+### Chat Completion with configuration(Streaming Response)
+
+```typescript
+import { Mallam } from "mallam";
+
+const mallam = new Mallam("your_api_key_here");
+
+(async() => {
+  const res = await mallam.chatCompletion("berapa average harga rumah dekat johor?", {
+        stream: false
+  }) as ReadableStream;
+
+  const reader = res.getReader();
+  while (true) {
+	const { done, value } = await reader.read();
+	if (done) break;
+	  console.log(value); // This will log each chunk as it arrives
+	}
+})()
+
+```
 
 ### Create Embeddings
 
