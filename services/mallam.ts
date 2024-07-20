@@ -81,7 +81,14 @@ export class Mallam implements MallamAgent {
               const jsonString = chunk.slice(6);
               try {
                 const data = JSON.parse(jsonString);
-                controller.enqueue(data);
+                const result = {
+                  id: data.id,
+                  prompt,
+                  message: data.choices[0].delta.content,
+                  usage: data.usage,
+                } as ChatCompletionResponse;
+
+                controller.enqueue(result);
               } catch (e) {
                 console.error("Error parsing JSON:", e);
               }
