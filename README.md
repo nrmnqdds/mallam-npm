@@ -47,17 +47,6 @@ const mallam = new Mallam("your_api_key_here");
 })()
 ```
 
-Available configuration:
-
-| Parameter    | Default Value |
-| -------- | ------- |
-| model  |"mallam-small"    |
-| temperature | 0.9     |
-| top_p    | 0.95    |
-| top_k    | 50    |
-| max_tokens    | 256    |
-| stream    | false    |
-
 ### Chat Completion with configuration(Streaming Response)
 
 ```typescript
@@ -80,15 +69,40 @@ const mallam = new Mallam("your_api_key_here");
 
 ```
 
-### Create Embeddings
+Available configuration:
+
+| Parameter    | Default Value |
+| -------- | ------- |
+| model  |"mallam-small"    |
+| temperature | 0.9     |
+| top_p    | 0.95    |
+| top_k    | 50    |
+| max_tokens    | 256    |
+| stream    | false    |
+
+
+### create embeddings
 
 ```typescript
-import { Mallam } from "mallam";
+import { mallam } from "mallam";
 
-const mallam = new Mallam("your_api_key_here");
+const mallam = new mallam("your_api_key_here");
 
 (async() => {
   const res = await mallam.createEmbedding("saya sayang ibu saya");
+  console.log(res);
+})()
+```
+
+### Translation
+
+```typescript
+import { mallam } from "mallam";
+
+const mallam = new mallam("your_api_key_here");
+
+(async() => {
+  const res = await mallam.translate("ddoes god reward the misunderstood or do I just have to deal with people invalidating how I truly feel all the time");
   console.log(res);
 })()
 ```

@@ -4,6 +4,8 @@ import type {
 	ChatCompletionResponse,
 	CreateEmbeddingProps,
 	CreateEmbeddingResponse,
+	TranslationProps,
+	TranslationResponse,
 } from "../types/index.ts";
 
 export class Mallam {
@@ -145,5 +147,36 @@ export class Mallam {
 		};
 
 		return result;
+	};
+
+	// ----------------- Translation -----------------
+
+	translate = async (
+		prompt: string,
+		props?: TranslationProps,
+	): Promise<TranslationResponse> => {
+		const res = await fetch(
+			"https://llm-router.nous.mesolitica.com/translation",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${this.apiKey}`,
+				},
+				body: JSON.stringify({
+					input: prompt,
+					to_lang: props?.toLang || "ms",
+					model: props?.model || "small",
+				}),
+			},
+		);
+
+		if (!res.ok) {
+			throw new Error(`HTTP error! status: ${res.status}`);
+		}
+
+		const data = await res.json();
+
+		return data;
 	};
 }
