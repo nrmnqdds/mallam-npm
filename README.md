@@ -57,7 +57,7 @@ const mallam = new Mallam("your_api_key_here");
 (async() => {
   const res = await mallam.chatCompletion("berapa average harga rumah dekat johor?", {
         stream: false
-  }) as ReadableStream;
+  }); 
 
   const reader = res.getReader();
   while (true) {

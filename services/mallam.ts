@@ -15,11 +15,13 @@ export class Mallam {
 		this.apiKey = apiKey;
 	}
 
-	chatCompletion = async (
+	chatCompletion = async <T extends boolean = false>(
 		prompt: string | ChatCompletionMessageParam[],
-		props?: ChatCompletionProps,
+		props?: ChatCompletionProps & { stream?: T },
 	): Promise<
-		ChatCompletionResponse | ReadableStream<ChatCompletionResponse> | undefined
+		T extends true
+			? ReadableStream<ChatCompletionResponse>
+			: ChatCompletionResponse
 	> => {
 		const defaultProps: ChatCompletionProps = {
 			model: "mallam-small",
@@ -30,7 +32,7 @@ export class Mallam {
 			stream: false,
 		};
 
-		props = { ...defaultProps, ...props };
+		props = Object.assign(defaultProps, props);
 
 		const myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${this.apiKey}`);
@@ -49,15 +51,15 @@ export class Mallam {
 		}
 
 		const raw = JSON.stringify({
-			model: props.model,
-			temperature: props.temperature,
-			top_p: props.top_p,
-			top_k: props.top_k,
-			max_tokens: props.max_tokens,
+			model: props?.model,
+			temperature: props?.temperature,
+			top_p: props?.top_p,
+			top_k: props?.top_k,
+			max_tokens: props?.max_tokens,
 			stop: ["[/INST]", "[INST]", "<s>"],
 			messages: messages,
 			tools: null,
-			stream: props.stream,
+			stream: props?.stream,
 		});
 
 		const res = await fetch(
@@ -74,7 +76,7 @@ export class Mallam {
 			throw new Error(`HTTP error! status: ${res.status}`);
 		}
 
-		if (props.stream) {
+		if (props?.stream) {
 			return res.body?.pipeThrough(new TextDecoderStream()).pipeThrough(
 				new TransformStream({
 					transform: (chunk, controller) => {
@@ -96,7 +98,7 @@ export class Mallam {
 						}
 					},
 				}),
-			);
+			) as T extends true ? ReadableStream<ChatCompletionResponse> : never;
 		}
 		const text = await res.text();
 		const parsedText = JSON.parse(text);
@@ -108,7 +110,9 @@ export class Mallam {
 			usage: parsedText.usage,
 		} as ChatCompletionResponse;
 
-		return result;
+		return result as T extends true
+			? ReadableStream<ChatCompletionResponse>
+			: ChatCompletionResponse;
 	};
 
 	// ----------------- Create Embedding -----------------
