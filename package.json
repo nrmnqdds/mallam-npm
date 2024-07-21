@@ -1,6 +1,6 @@
 {
 	"name": "mallam",
-	"version": "1.0.31",
+	"version": "1.0.32",
 	"description": "A JavaScript wrapper for MaLLaM API",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
