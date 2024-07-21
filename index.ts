@@ -1,2 +1,2 @@
-export { Mallam } from "./services/mallam";
+export { Mallam } from "./lib/mallam";
 export type * from "./types/index.ts";
