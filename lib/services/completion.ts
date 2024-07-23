@@ -9,9 +9,7 @@ export const completion = async <T extends boolean = false>(
 	prompt: string | ChatCompletionMessageParam[],
 	props?: ChatCompletionProps & { stream?: T },
 ): Promise<
-	T extends true
-		? ReadableStream<ChatCompletionResponse>
-		: ChatCompletionResponse
+	T extends true ? ReadableStream<string> : ChatCompletionResponse
 > => {
 	const myHeaders = new Headers();
 	myHeaders.append("Authorization", `Bearer ${apiKey}`);
@@ -70,14 +68,14 @@ export const completion = async <T extends boolean = false>(
 								usage: data.usage,
 							} as ChatCompletionResponse;
 
-							controller.enqueue(result);
+							controller.enqueue(`${JSON.stringify(result)}\n\n`);
 						} catch (e) {
 							console.error("Error parsing JSON:", e);
 						}
 					}
 				},
 			}),
-		) as T extends true ? ReadableStream<ChatCompletionResponse> : never;
+		) as T extends true ? ReadableStream<string> : never;
 	}
 	const text = await res.text();
 	const parsedText = JSON.parse(text);
@@ -90,6 +88,6 @@ export const completion = async <T extends boolean = false>(
 	} as ChatCompletionResponse;
 
 	return result as T extends true
-		? ReadableStream<ChatCompletionResponse>
+		? ReadableStream<string>
 		: ChatCompletionResponse;
 };
