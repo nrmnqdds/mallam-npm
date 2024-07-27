@@ -44,6 +44,11 @@ export class Mallam {
 		text: string,
 		props?: CreateEmbeddingProps,
 	): Promise<CreateEmbeddingResponse> => {
+		const defaultProps: CreateEmbeddingProps = {
+			model: "base",
+		};
+
+		Object.assign(defaultProps, props);
 		return create(this.apiKey, text, props);
 	};
 
@@ -53,6 +58,13 @@ export class Mallam {
 		prompt: string,
 		props?: TranslationProps,
 	): Promise<TranslationResponse> => {
+		const defaultProps: TranslationProps = {
+			toLang: "ms",
+			model: "small",
+		};
+
+		props = Object.assign(defaultProps, props);
+
 		return translate(this.apiKey, prompt, props);
 	};
 }

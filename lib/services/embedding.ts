@@ -14,7 +14,7 @@ export const create = async (
 
 	const raw = JSON.stringify({
 		input: text,
-		model: props?.model || "base",
+		model: props?.model,
 	});
 
 	const res = await fetch("https://llm-router.nous.mesolitica.com/embeddings", {

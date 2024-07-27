@@ -18,8 +18,8 @@ export const translate = async (
 			},
 			body: JSON.stringify({
 				input: prompt,
-				to_lang: props?.toLang || "ms",
-				model: props?.model || "small",
+				to_lang: props?.toLang,
+				model: props?.model,
 			}),
 		},
 	);
