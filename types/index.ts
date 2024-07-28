@@ -51,7 +51,7 @@ export interface ChatCompletionMessageParam {
 	/**
 	 * Role of the prompt.
 	 */
-	role: "user" | "system";
+	role: "user" | "system" | "assistant";
 
 	/**
 	 * Content of the prompt.
