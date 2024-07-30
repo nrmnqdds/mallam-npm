@@ -67,9 +67,7 @@ export const completion = async <T extends boolean = false>(
 								usage: data.usage,
 							} as ChatCompletionResponse;
 
-							controller.enqueue(
-								`${JSON.stringify(result).split(/\s{2,}/)}\n\n`,
-							);
+							controller.enqueue(`${JSON.stringify(result).split(/\s{2,}/)}\n`);
 						} catch (e) {
 							console.error("Error parsing JSON:", e);
 						}
