@@ -56,21 +56,18 @@ export const completion = async <T extends boolean = false>(
 	if (props?.stream) {
 		return res.body?.pipeThrough(new TextDecoderStream()).pipeThrough(
 			new TransformStream({
-				transform: (chunk, controller) => {
+				transform: async (chunk, controller) => {
 					if (chunk.startsWith("data: ")) {
 						const jsonString = chunk.slice(6);
 						try {
 							const data = JSON.parse(jsonString);
 							const result = {
 								id: data.id,
-								prompt,
 								message: data.choices[0].delta.content,
 								usage: data.usage,
 							} as ChatCompletionResponse;
 
-							controller.enqueue(
-								`${JSON.stringify(result).split(/\s{2,}/)}\n\n`,
-							);
+							controller.enqueue(`${JSON.stringify(result).split(/\s{2,}/)}\n`);
 						} catch (e) {
 							console.error("Error parsing JSON:", e);
 						}
