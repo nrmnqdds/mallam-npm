@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import type {
 	ChatCompletionMessageParam,
 	ChatCompletionResponse,
-} from "../types";
+} from "../../types";
 import { useState } from "react";
 
 /**
