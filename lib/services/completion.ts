@@ -39,15 +39,12 @@ export const completion = async <T extends boolean = false>(
 		stream: props?.stream,
 	});
 
-	const res = await fetch(
-		"https://llm-router.nous.mesolitica.com/chat/completions",
-		{
-			method: "POST",
-			headers: myHeaders,
-			body: raw,
-			redirect: "follow",
-		},
-	);
+	const res = await fetch("https://api.mesolitica.com/chat/completions", {
+		method: "POST",
+		headers: myHeaders,
+		body: raw,
+		redirect: "follow",
+	});
 
 	if (!res.ok) {
 		throw new Error(`HTTP error! status: ${res.status}`);

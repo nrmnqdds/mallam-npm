@@ -9,7 +9,7 @@ export const translate = async (
 	props?: TranslationProps,
 ): Promise<TranslationResponse> => {
 	const res = await fetch(
-		"https://llm-router.nous.mesolitica.com/translation",
+		"https://api.mesolitica.com/translation",
 		{
 			method: "POST",
 			headers: {

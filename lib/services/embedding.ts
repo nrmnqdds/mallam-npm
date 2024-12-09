@@ -17,7 +17,7 @@ export const create = async (
 		model: props?.model,
 	});
 
-	const res = await fetch("https://llm-router.nous.mesolitica.com/embeddings", {
+	const res = await fetch("https://api.mesolitica.com/embeddings", {
 		method: "POST",
 		headers: myHeaders,
 		body: raw,
