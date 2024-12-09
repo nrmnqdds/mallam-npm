@@ -32,10 +32,14 @@ export const completion = async <T extends boolean = false>(
 		temperature: props?.temperature,
 		top_p: props?.top_p,
 		top_k: props?.top_k,
+		repetition_penalty: 1.05,
+		presence_penalty: 0,
+		frequency_penalty: 0,
 		max_tokens: props?.max_tokens,
-		stop: ["[/INST]", "[INST]", "<s>"],
+		stop: [],
+		// stop: ["[/INST]", "[INST]", "<s>"],
 		messages: messages,
-		tools: null,
+		tools: [],
 		stream: props?.stream,
 	});
 
