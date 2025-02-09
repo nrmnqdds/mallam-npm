@@ -11,6 +11,11 @@ import { completion } from "./services/completion";
 import { create } from "./services/embedding";
 import { translate } from "./services/translate";
 
+/**
+ * Mallam class
+ * The main class for the Mallam API
+ * @param apiKey - The API key for the Mallam API
+ */
 export class Mallam {
 	private apiKey: string;
 
