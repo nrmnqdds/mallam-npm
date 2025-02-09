@@ -1,6 +1,6 @@
 {
   "name": "mallam",
-  "version": "1.0.51",
+  "version": "1.0.53",
   "description": "A JavaScript wrapper for MaLLaM API",
   "main": "./dist/index.js",
   "files": [

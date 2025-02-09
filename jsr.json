@@ -1,6 +1,6 @@
 {
   "name": "@qud/mallam",
-  "version": "1.0.51",
+  "version": "1.0.53",
   "license": "MIT",
   "exports": "./lib/mallam.ts"
 }
