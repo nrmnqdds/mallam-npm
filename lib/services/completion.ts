@@ -4,6 +4,13 @@ import type {
 	ChatCompletionResponse,
 } from "../../types/index.ts";
 
+/**
+ * Chat completion
+ * @param apiKey - The API key
+ * @param prompt - The prompt to be completed
+ * @param props - The properties for the completion
+ * @returns The completion response
+ */
 export const completion = async <T extends boolean = false>(
 	apiKey: string,
 	prompt: string | ChatCompletionMessageParam[],

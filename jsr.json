@@ -1,5 +1,4 @@
 {
-  "$schema": "https://jsr.io/schema/config-file.v1.json",
   "name": "@qud/mallam",
   "version": "1.0.51",
   "license": "MIT",

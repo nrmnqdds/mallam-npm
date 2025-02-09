@@ -3,6 +3,13 @@ import type {
 	CreateEmbeddingResponse,
 } from "../../types/index.ts";
 
+/**
+ * Create an embedding
+ * @param apiKey - The API key
+ * @param text - The text to create an embedding for
+ * @param props - The properties for the embedding
+ * @returns The embedding response
+ */
 export const create = async (
 	apiKey: string,
 	text: string,

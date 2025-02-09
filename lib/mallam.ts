@@ -19,6 +19,12 @@ export class Mallam {
 	}
 
 	// ----------------- Chat Completion -----------------
+	/**
+	 * Chat completion
+	 * @param prompt - The prompt to be completed
+	 * @param props - The properties for the completion
+	 * @returns The completion response
+	 */
 	chatCompletion = async <T extends boolean = false>(
 		prompt: string | ChatCompletionMessageParam[],
 		props?: ChatCompletionProps & { stream?: T },
@@ -43,6 +49,12 @@ export class Mallam {
 	};
 
 	// ----------------- Create Embedding -----------------
+	/**
+	 * Create an embedding
+	 * @param text - The text to create an embedding for
+	 * @param props - The properties for the embedding
+	 * @returns The embedding response
+	 */
 	createEmbedding = async (
 		text: string,
 		props?: CreateEmbeddingProps,
@@ -56,6 +68,12 @@ export class Mallam {
 	};
 
 	// ----------------- Translation -----------------
+	/**
+	 * Translate text
+	 * @param prompt - The prompt to be translated
+	 * @param props - The properties for the translation
+	 * @returns The translation response
+	 */
 	translate = async (
 		prompt: string,
 		props?: TranslationProps,

@@ -3,6 +3,13 @@ import type {
 	TranslationResponse,
 } from "../../types/index.ts";
 
+/**
+ * Translate a text
+ * @param apiKey - The API key
+ * @param prompt - The text to be translated
+ * @param props - The properties for the translation
+ * @returns The translation response
+ */
 export const translate = async (
 	apiKey: string,
 	prompt: string,
