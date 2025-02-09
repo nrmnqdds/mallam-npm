@@ -37,6 +37,24 @@ export interface ChatCompletionProps {
 	 * @default false
 	 */
 	stream?: boolean;
+
+	/**
+	 * Repetition penalty.
+	 * @default 1.05
+	 */
+	repetition_penalty?: number;
+
+	/**
+	 * Presence penalty.
+	 * @default 0
+	 */
+	presence_penalty?: number;
+
+	/**
+	 * Frequency penalty.
+	 * @default 0
+	 */
+	frequency_penalty?: number;
 }
 
 export interface CreateEmbeddingProps {
@@ -82,6 +100,10 @@ export interface TranslationProps {
 	 */
 	toLang?: string;
 	model?: string;
+	top_k?: number;
+	top_p?: number;
+	repetition_penalty?: number;
+	temperature?: number;
 }
 
 type PickOnly<T, K extends keyof T> = Pick<T, K> & {

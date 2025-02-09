@@ -30,6 +30,9 @@ export class Mallam {
 			temperature: 0.9,
 			top_p: 0.95,
 			top_k: 50,
+			repetition_penalty: 1.05,
+			presence_penalty: 0,
+			frequency_penalty: 0,
 			max_tokens: 256,
 			stream: false,
 		};
@@ -53,7 +56,6 @@ export class Mallam {
 	};
 
 	// ----------------- Translation -----------------
-
 	translate = async (
 		prompt: string,
 		props?: TranslationProps,
@@ -61,6 +63,10 @@ export class Mallam {
 		const defaultProps: TranslationProps = {
 			toLang: "ms",
 			model: "small",
+			top_k: 1,
+			top_p: 1,
+			repetition_penalty: 1.1,
+			temperature: 0,
 		};
 
 		props = Object.assign(defaultProps, props);

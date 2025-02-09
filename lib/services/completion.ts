@@ -37,7 +37,6 @@ export const completion = async <T extends boolean = false>(
 		frequency_penalty: 0,
 		max_tokens: props?.max_tokens,
 		stop: [],
-		// stop: ["[/INST]", "[INST]", "<s>"],
 		messages: messages,
 		tools: [],
 		stream: props?.stream,

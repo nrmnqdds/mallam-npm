@@ -1,39 +1,42 @@
 {
-	"name": "mallam",
-	"version": "1.0.51",
-	"description": "A JavaScript wrapper for MaLLaM API",
-	"main": "./dist/index.js",
-	"files": [
-		"dist/**/*"
-	],
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "tsc",
-		"clean": "rm -rf ./dist/",
-		"start": "tsc && bun run index.ts"
-	},
-	"keywords": [
-		"mallam",
-		"mallam javascript",
-		"mallam api"
-	],
-	"bugs": {
-		"url": "https://github.com/nrmnqdds/mallam-npm/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/nrmnqdds/mallam-npm.git"
-	},
-	"homepage": "https://github.com/nrmnqdds/mallam-npm#readme",
-	"preferGlobal": true,
-	"author": "nrmnqdds",
-	"license": "MIT",
-	"dependencies": {
-		"@tanstack/react-query": "^5.59.19",
-		"react": "^18.3.1",
-		"typescript": "^5.4.5"
-	},
-	"devDependencies": {
-		"@types/react": "^18.3.12"
-	}
+  "name": "mallam",
+  "version": "1.0.51",
+  "description": "A JavaScript wrapper for MaLLaM API",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "mocha 'tests/**/*.ts'",
+    "build": "clean && tsc",
+    "clean": "rm -rf ./dist/",
+    "start": "tsc && bun run index.ts"
+  },
+  "keywords": [
+    "mallam",
+    "mallam javascript",
+    "mallam api"
+  ],
+  "bugs": {
+    "url": "https://github.com/nrmnqdds/mallam-npm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrmnqdds/mallam-npm.git"
+  },
+  "homepage": "https://github.com/nrmnqdds/mallam-npm#readme",
+  "preferGlobal": true,
+  "author": "nrmnqdds",
+  "license": "MIT",
+  "dependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.1",
+    "@types/sinon": "^17.0.3",
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1",
+    "node": "^22.12.0",
+    "sinon": "^19.0.2",
+    "typescript": "^5.4.5"
+  }
 }
